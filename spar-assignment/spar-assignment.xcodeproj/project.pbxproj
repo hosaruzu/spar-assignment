@@ -7,18 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0CA374392C68BB91001D5CD2 /* spar_assignmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA374382C68BB91001D5CD2 /* spar_assignmentApp.swift */; };
+		0CA374392C68BB91001D5CD2 /* SparAssignmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA374382C68BB91001D5CD2 /* SparAssignmentApp.swift */; };
 		0CA3743B2C68BB91001D5CD2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA3743A2C68BB91001D5CD2 /* ContentView.swift */; };
 		0CA3743D2C68BB95001D5CD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CA3743C2C68BB95001D5CD2 /* Assets.xcassets */; };
 		0CA374402C68BB95001D5CD2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CA3743F2C68BB95001D5CD2 /* Preview Assets.xcassets */; };
+		0CA374492C68C7C8001D5CD2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 0CA374482C68C7C8001D5CD2 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0CA374352C68BB91001D5CD2 /* spar-assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "spar-assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0CA374382C68BB91001D5CD2 /* spar_assignmentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spar_assignmentApp.swift; sourceTree = "<group>"; };
+		0CA374382C68BB91001D5CD2 /* SparAssignmentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparAssignmentApp.swift; sourceTree = "<group>"; };
 		0CA3743A2C68BB91001D5CD2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0CA3743C2C68BB95001D5CD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0CA3743F2C68BB95001D5CD2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0CA374482C68C7C8001D5CD2 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +53,8 @@
 		0CA374372C68BB91001D5CD2 /* spar-assignment */ = {
 			isa = PBXGroup;
 			children = (
-				0CA374382C68BB91001D5CD2 /* spar_assignmentApp.swift */,
+				0CA374482C68C7C8001D5CD2 /* .swiftlint.yml */,
+				0CA374382C68BB91001D5CD2 /* SparAssignmentApp.swift */,
 				0CA3743A2C68BB91001D5CD2 /* ContentView.swift */,
 				0CA3743C2C68BB95001D5CD2 /* Assets.xcassets */,
 				0CA3743E2C68BB95001D5CD2 /* Preview Content */,
@@ -77,6 +80,7 @@
 				0CA374312C68BB91001D5CD2 /* Sources */,
 				0CA374322C68BB91001D5CD2 /* Frameworks */,
 				0CA374332C68BB91001D5CD2 /* Resources */,
+				0CA374462C68C70B001D5CD2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -111,6 +115,9 @@
 				Base,
 			);
 			mainGroup = 0CA3742C2C68BB91001D5CD2;
+			packageReferences = (
+				0CA374472C68C741001D5CD2 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+			);
 			productRefGroup = 0CA374362C68BB91001D5CD2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,6 +132,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CA374492C68C7C8001D5CD2 /* .swiftlint.yml in Resources */,
 				0CA374402C68BB95001D5CD2 /* Preview Assets.xcassets in Resources */,
 				0CA3743D2C68BB95001D5CD2 /* Assets.xcassets in Resources */,
 			);
@@ -132,13 +140,35 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0CA374462C68C70B001D5CD2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "SWIFT_PACKAGE_DIR=\"${BUILD_DIR%Build/*}SourcePackages/artifacts\"\nSWIFTLINT_CMD=$(ls \"$SWIFT_PACKAGE_DIR\"/swiftlintplugins/SwiftLintBinary/SwiftLintBinary.artifactbundle/swiftlint-*/bin/swiftlint | head -n 1)\n\nif test -f \"$SWIFTLINT_CMD\" 2>&1\nthen\n    \"$SWIFTLINT_CMD\"\nelse\n    echo \"warning: `swiftlint` command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0CA374312C68BB91001D5CD2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				0CA3743B2C68BB91001D5CD2 /* ContentView.swift in Sources */,
-				0CA374392C68BB91001D5CD2 /* spar_assignmentApp.swift in Sources */,
+				0CA374392C68BB91001D5CD2 /* SparAssignmentApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,7 +212,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -245,7 +275,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -344,6 +374,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0CA374472C68C741001D5CD2 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.56.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 0CA3742D2C68BB91001D5CD2 /* Project object */;
 }
