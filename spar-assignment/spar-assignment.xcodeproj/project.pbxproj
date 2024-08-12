@@ -83,7 +83,7 @@
 			children = (
 				0CA3744D2C68CF19001D5CD2 /* Resources */,
 				0CA3744C2C68CF04001D5CD2 /* App */,
-				0CA3744B2C68CEF6001D5CD2 /* Category */,
+				0CA3744B2C68CEF6001D5CD2 /* Main */,
 				0CA374482C68C7C8001D5CD2 /* .swiftlint.yml */,
 				0CA3743E2C68BB95001D5CD2 /* Preview Content */,
 			);
@@ -98,14 +98,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		0CA3744B2C68CEF6001D5CD2 /* Category */ = {
+		0CA3744B2C68CEF6001D5CD2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				0CA374502C68D06F001D5CD2 /* Models */,
 				0CA374552C691E3F001D5CD2 /* Components */,
 				0CA3746E2C6A2E37001D5CD2 /* MainView.swift */,
 			);
-			path = Category;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		0CA3744C2C68CF04001D5CD2 /* App */ = {
