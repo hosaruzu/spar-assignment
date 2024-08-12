@@ -57,7 +57,7 @@ private extension VerticalProductCardView {
                     BadgeView(title: badge.type.rawValue, colorName: badge.color.rawValue)
                 }
                 Spacer()
-                ProductActionsView()
+                ProductActionsView(isFavorite: product.isFavorite)
             }
             Spacer()
             HStack {

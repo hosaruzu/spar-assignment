@@ -76,7 +76,7 @@ private extension HorizontalProductCardView {
                 }
                 .frame(height: 36)
             }
-            ProductActionsView()
+            ProductActionsView(isFavorite: product.isFavorite)
         }
         .frame(height: 144)
     }
@@ -92,7 +92,7 @@ private extension HorizontalProductCardView {
 
 #Preview {
     Group {
-        HorizontalProductCardView(product: Product.mockProducts()[1])
+        HorizontalProductCardView(product: Product.mockProducts()[0])
         HorizontalProductCardView(product: Product.mockProducts()[1])
     }
 }

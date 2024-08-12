@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ProductActionsView: View {
+    @State var isFavorite: Bool = false
+
     var body: some View {
         VStack {
             Button { } label: {
                 Image(.infoIcon)
             }
             .frame(width: 32, height: 32)
-            Button { } label: {
-                Image(.heartIcon)
+            Button {
+                isFavorite.toggle()
+            } label: {
+                Image(isFavorite ? .heartIconFill : .heartIcon)
             }
             .frame(width: 32, height: 32)
         }
