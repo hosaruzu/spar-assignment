@@ -15,13 +15,15 @@ struct ProductPricesView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            HStack(spacing: 0) {
-                HStack(alignment: .top, spacing: 0) {
+            HStack(spacing: 2) {
+                HStack(alignment: .top, spacing: 2) {
                     Text(salePrice, format: .number.rounded(rule: .down, increment: 1.0))
                         .font(.system(size: 20, weight: .bold))
-                    Text("\(salePrice)".suffix(2))
-                        .font(.system(size: 16, weight: .bold))
-                        .padding(.top, 1)
+                    if "\(salePrice)".suffix(1) != "0" {
+                        Text("\(salePrice)".suffix(2))
+                            .font(.system(size: 16, weight: .bold))
+                            .padding(.top, 1)
+                    }
                 }
                 Image(.perAmountIcon)
             }
@@ -36,5 +38,5 @@ struct ProductPricesView: View {
 }
 
 #Preview {
-    ProductPricesView(initialPrice: 199.99, salePrice: 199.99, isButtonPressed: .constant(false))
+    ProductPricesView(initialPrice: 199.99, salePrice: 199.00, isButtonPressed: .constant(false))
 }

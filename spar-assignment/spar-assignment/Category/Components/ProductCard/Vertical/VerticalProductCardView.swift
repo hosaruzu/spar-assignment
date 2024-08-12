@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProductCardView: View {
+struct VerticalProductCardView: View {
     let product: Product
 
     @State var isButtonPressed = false
@@ -26,8 +26,6 @@ struct ProductCardView: View {
                 productImageView
                 imageOverlayContentView
             }
-            .frame(width: 168, height: 148)
-
             bottomContentView
         }
         .background(.white)
@@ -44,12 +42,12 @@ struct ProductCardView: View {
     }
 }
 
-private extension ProductCardView {
+private extension VerticalProductCardView {
     var productImageView: some View {
         Image(product.imageName)
             .resizable()
             .scaledToFill()
-            .frame(width: 168)
+            .frame(width: 168, height: 148)
     }
 
     var imageOverlayContentView: some View {
@@ -63,7 +61,7 @@ private extension ProductCardView {
             }
             Spacer()
             HStack {
-                RatingView()
+                RatingView(rating: product.rating, testimonials: product.testimonialsCount, showTestimonials: false)
                 Spacer()
                 if let saleAmount = product.saleAmount {
                     SaleAmountView(saleAmount: saleAmount)
@@ -78,7 +76,7 @@ private extension ProductCardView {
         VStack(alignment: .leading, spacing: 0) {
             ProductNameView(name: product.name, country: product.country)
             ValuePickerView(currentValue: $currentValue, isButtonPressed: $isButtonPressed)
-
+                .padding(.bottom, 5)
             HStack {
                 ProductPricesView(
                     initialPrice: product.price.initial,
@@ -95,5 +93,8 @@ private extension ProductCardView {
 }
 
 #Preview {
-    ProductCardView(product: Product.mockProduct())
+    HStack {
+        VerticalProductCardView(product: Product.mockProducts()[0])
+        VerticalProductCardView(product: Product.mockProducts()[1])
+    }
 }

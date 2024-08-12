@@ -18,7 +18,6 @@ struct ValuePickerView: View {
         }
         .pickerStyle(.segmented)
         .opacity(isButtonPressed ? 1 : 0)
-        .padding(.bottom, 5)
     }
 }
 

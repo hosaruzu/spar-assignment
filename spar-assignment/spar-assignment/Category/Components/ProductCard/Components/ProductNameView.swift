@@ -18,6 +18,9 @@ struct ProductNameView: View {
             if let country {
                 Text(country)
                     .foregroundStyle(.secondary)
+            } else {
+                Text("")
+                    .opacity(0)
             }
         }
         .font(.system(size: 12))
