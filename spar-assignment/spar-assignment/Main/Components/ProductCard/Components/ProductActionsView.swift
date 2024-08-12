@@ -8,31 +8,55 @@
 import SwiftUI
 
 struct ProductActionsView: View {
-    @State var isFavorite: Bool = false
+    // MARK: - Properties
+
+    @State private var isFavorite: Bool = false
+
+    // MARK: - Init
+
+    init(isFavorite: Bool) {
+        self.isFavorite = isFavorite
+    }
+
+    // MARK: - Body
 
     var body: some View {
         VStack {
-            Button { } label: {
-                Image(.infoIcon)
-            }
-            .frame(width: 32, height: 32)
-            Button {
-                isFavorite.toggle()
-            } label: {
-                Image(isFavorite ? .heartIconFill : .heartIcon)
-            }
-            .frame(width: 32, height: 32)
+            infoButton
+            favoriteButton
         }
-        .background(
-            RoundedRectangle(cornerRadius: 40)
-                .fill(.white.opacity(0.8))
-        )
+        .background(backgroundView)
+    }
+}
+
+// MARK: - Subviews
+
+private extension ProductActionsView {
+    var infoButton: some View {
+        Button { } label: {
+            Image(.infoIcon)
+        }
+        .frame(width: 32, height: 32)
+    }
+
+    var favoriteButton: some View {
+        Button {
+            isFavorite.toggle()
+        } label: {
+            Image(isFavorite ? .heartIconFill : .heartIcon)
+        }
+        .frame(width: 32, height: 32)
+    }
+
+    var backgroundView: some View {
+        RoundedRectangle(cornerRadius: 40)
+            .fill(.white.opacity(0.8))
     }
 }
 
 #Preview {
     ZStack {
         Color.primary
-        ProductActionsView()
+        ProductActionsView(isFavorite: true)
     }
 }

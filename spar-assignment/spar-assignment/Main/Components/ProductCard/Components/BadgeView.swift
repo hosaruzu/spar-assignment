@@ -8,8 +8,22 @@
 import SwiftUI
 
 struct BadgeView: View {
-    var title: String
-    var colorName: String
+    // MARK: - Properties
+
+    private let title: String
+    private let colorName: String
+
+    // MARK: - Init
+
+    init(
+        title: String,
+        colorName: String
+    ) {
+        self.title = title
+        self.colorName = colorName
+    }
+
+    // MARK: - Body
 
     var body: some View {
         Text(title)
@@ -29,6 +43,8 @@ struct BadgeView: View {
             )
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     BadgeView(title: "Sale", colorName: "BadgeRed")

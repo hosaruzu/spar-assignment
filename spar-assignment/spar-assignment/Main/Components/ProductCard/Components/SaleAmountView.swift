@@ -8,7 +8,17 @@
 import SwiftUI
 
 struct SaleAmountView: View {
-    var saleAmount: Int
+    // MARK: - Properties
+
+    private let saleAmount: Int
+
+    // MARK: - Init
+
+    init(saleAmount: Int) {
+        self.saleAmount = saleAmount
+    }
+
+    // MARK: - Body
 
     var body: some View {
         Text(saleAmount, format: .percent)
@@ -16,6 +26,8 @@ struct SaleAmountView: View {
             .font(.system(size: 16, weight: .bold))
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     SaleAmountView(saleAmount: 25)

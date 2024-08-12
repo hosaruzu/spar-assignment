@@ -8,17 +8,22 @@
 import SwiftUI
 
 struct HorizontalProductCardView: View {
-    let product: Product
+    // MARK: - Properties
 
-    @State var isButtonPressed = false
-    @State var isPlusButtonDisabled = false
+    private let product: Product
+
+    @EnvironmentObject var cartManager: CartManager
+    @State private var isButtonPressed = false
+    @State private var isPlusButtonDisabled = false
     @State private var currentValue = 1
+
+    // MARK: - Init
 
     init(product: Product) {
         self.product = product
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.secondaryLabel], for: .normal)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.label], for: .selected)
     }
+
+    // MARK: - Body
 
     var body: some View {
         VStack {
@@ -29,8 +34,16 @@ struct HorizontalProductCardView: View {
             .padding()
             rowSeparator
         }
+        .onChange(of: isButtonPressed) { _, newValue in
+            handleCart(product, condition: newValue)
+        }
+        .onAppear {
+            isButtonPressed = !isProductUnique()
+        }
     }
 }
+
+// MARK: - Subviews
 
 private extension HorizontalProductCardView {
     var productImageView: some View {
@@ -89,10 +102,28 @@ private extension HorizontalProductCardView {
     }
 }
 
+// MARK: - Work with cart
+
+private extension HorizontalProductCardView {
+    func handleCart(_ product: Product, condition: Bool) {
+        if condition && isProductUnique() {
+            cartManager.addToCart(product)
+        }
+        if !condition {
+            cartManager.removeFromCart(product)
+        }
+    }
+
+    func isProductUnique() -> Bool {
+        !cartManager.products.contains { $0.id == product.id }
+    }
+}
+
+// MARK: - Preview
 
 #Preview {
     Group {
         HorizontalProductCardView(product: Product.mockProducts()[0])
-        HorizontalProductCardView(product: Product.mockProducts()[1])
+            .environmentObject(CartManager())
     }
 }

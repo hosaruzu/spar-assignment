@@ -10,14 +10,13 @@ import SwiftUI
 struct VerticalProductCardView: View {
     let product: Product
 
-    @State var isButtonPressed = false
-    @State var isPlusButtonDisabled = false
+    @EnvironmentObject var cartManager: CartManager
+    @State private var isButtonPressed = false
+    @State private var isPlusButtonDisabled = false
     @State private var currentValue = 1
 
     init(product: Product) {
         self.product = product
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.secondaryLabel], for: .normal)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.label], for: .selected)
     }
 
     var body: some View {
@@ -37,6 +36,13 @@ struct VerticalProductCardView: View {
                 topTrailingRadius: 16
             )
         )
+        .onChange(of: isButtonPressed) { _, newValue in
+            print(newValue)
+            handleCart(product, condition: newValue)
+        }
+        .onAppear {
+            isButtonPressed = !isProductUnique()
+        }
         .frame(width: 168, height: 278)
         .shadow(color: .shadow.opacity(0.2), radius: 8)
     }
@@ -92,9 +98,24 @@ private extension VerticalProductCardView {
     }
 }
 
+private extension VerticalProductCardView {
+    func handleCart(_ product: Product, condition: Bool) {
+        if condition && isProductUnique() {
+            cartManager.addToCart(product)
+        }
+        if !condition {
+            cartManager.removeFromCart(product)
+        }
+    }
+
+    func isProductUnique() -> Bool {
+        !cartManager.products.contains { $0.id == product.id }
+    }
+}
+
 #Preview {
     HStack {
         VerticalProductCardView(product: Product.mockProducts()[0])
-        VerticalProductCardView(product: Product.mockProducts()[1])
+            .environmentObject(CartManager())
     }
 }
