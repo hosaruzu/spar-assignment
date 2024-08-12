@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ProductsListView: View {
-    
     @State var products: [Product]
 
     var body: some View {
@@ -17,11 +16,11 @@ struct ProductsListView: View {
                 .fill(.separator)
                 .frame(maxWidth: .infinity)
                 .frame(height: 1)
-            LazyVGrid(columns: [GridItem()], content: {
+            LazyVGrid(columns: [GridItem()]) {
                 ForEach(products) { product in
                     HorizontalProductCardView(product: product)
                 }
-            })
+            }
         }
     }
 }

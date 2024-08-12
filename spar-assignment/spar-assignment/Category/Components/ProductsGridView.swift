@@ -16,12 +16,11 @@ struct ProductsGridView: View {
                 .fill(.separator)
                 .frame(maxWidth: .infinity)
                 .frame(height: 1)
-            LazyVGrid(columns: [GridItem(), GridItem()], content: {
+            LazyVGrid(columns: [GridItem(.fixed(168), spacing: 5), GridItem(.fixed(168), spacing: 5)], spacing: 8) {
                 ForEach(products) { product in
                     VerticalProductCardView(product: product)
-                        .padding()
                 }
-            })
+            }
         }
     }
 }
