@@ -37,7 +37,6 @@ struct VerticalProductCardView: View {
             )
         )
         .onChange(of: isButtonPressed) { _, newValue in
-            print(newValue)
             handleCart(product, condition: newValue)
         }
         .onAppear {

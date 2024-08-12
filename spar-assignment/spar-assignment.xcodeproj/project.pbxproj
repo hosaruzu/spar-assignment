@@ -28,6 +28,7 @@
 		0CA374752C6A4FF7001D5CD2 /* CartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA374742C6A4FF7001D5CD2 /* CartManager.swift */; };
 		0CA374772C6A5125001D5CD2 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA374762C6A5125001D5CD2 /* CartView.swift */; };
 		0CA3747C2C6A5DBE001D5CD2 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA3747B2C6A5DBE001D5CD2 /* MainViewModel.swift */; };
+		0CA3747F2C6A6DE6001D5CD2 /* CartRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA3747E2C6A6DE6001D5CD2 /* CartRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		0CA374742C6A4FF7001D5CD2 /* CartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartManager.swift; sourceTree = "<group>"; };
 		0CA374762C6A5125001D5CD2 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		0CA3747B2C6A5DBE001D5CD2 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		0CA3747E2C6A6DE6001D5CD2 /* CartRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,10 +210,19 @@
 		0CA3747A2C6A5D90001D5CD2 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
+				0CA3747D2C6A6DD8001D5CD2 /* Subviews */,
 				0CA374792C6A5D80001D5CD2 /* Managers */,
 				0CA374762C6A5125001D5CD2 /* CartView.swift */,
 			);
 			path = Cart;
+			sourceTree = "<group>";
+		};
+		0CA3747D2C6A6DD8001D5CD2 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				0CA3747E2C6A6DE6001D5CD2 /* CartRowView.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +339,7 @@
 				0CA374522C68D078001D5CD2 /* Product.swift in Sources */,
 				0CA374572C69BF8B001D5CD2 /* CartButton.swift in Sources */,
 				0CA3746F2C6A2E37001D5CD2 /* MainView.swift in Sources */,
+				0CA3747F2C6A6DE6001D5CD2 /* CartRowView.swift in Sources */,
 				0CA374612C69C496001D5CD2 /* ProductNameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,9 +11,24 @@ struct CartView: View {
     @EnvironmentObject var cartManager: CartManager
 
     var body: some View {
-        Text("\(cartManager.products.count) items in cart")
+        if cartManager.products.isEmpty {
+            Text("Корзина пуста")
+        } else {
+            List {
+                ForEach(cartManager.products) { product in
+                    CartRowView(product: product)
+                        .swipeActions {
+                            Button("Удалить из корзины") {
+                                cartManager.removeFromCart(product)
+                            }
+                            .tint(.red)
+                        }
+                }
+            }
+        }
     }
 }
+
 
 #Preview {
     CartView()
