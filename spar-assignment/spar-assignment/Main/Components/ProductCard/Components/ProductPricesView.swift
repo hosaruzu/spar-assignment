@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ProductPricesView: View {
-
     // MARK: - Properties
 
     private let initialPrice: Double

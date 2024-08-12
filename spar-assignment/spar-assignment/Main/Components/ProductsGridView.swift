@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ProductsGridView: View {
-
     // MARK: - Properties
 
     @State private var products: [Product]

@@ -8,7 +8,8 @@
 import Foundation
 
 final class CartManager: ObservableObject {
-    @Published private(set) var products: [Product] = [Product(
+    @Published private(set) var products: [Product] = [
+        Product(
         id: 1,
         imageName: "ProductMock1",
         rating: 4.1,
@@ -18,7 +19,8 @@ final class CartManager: ObservableObject {
         price: ProductPrice(initial: 199.99, salePrice: 99.99),
         badge: nil,
         saleAmount: nil,
-        isFavorite: true)]
+        isFavorite: true)
+    ]
 
     func addToCart(_ product: Product) {
         products.append(product)
