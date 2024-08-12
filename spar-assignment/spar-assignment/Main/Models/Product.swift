@@ -8,7 +8,7 @@
 import Foundation
 
 struct Product: Identifiable {
-    let id = UUID()
+    let id: Int
     let imageName: String
     let rating: Double
     let testimonialsCount: Int
@@ -45,6 +45,7 @@ struct ProductPrice {
 extension Product {
     static func mockProduct() -> Product {
         Product(
+            id: 1,
             imageName: "ProductMock5",
             rating: 4.1,
             testimonialsCount: 19,
@@ -57,6 +58,7 @@ extension Product {
     static func mockProducts() -> [Product] {
         return [
             Product(
+                id: 1,
                 imageName: "ProductMock1",
                 rating: 4.1,
                 testimonialsCount: 19,
@@ -67,6 +69,7 @@ extension Product {
                 saleAmount: nil,
                 isFavorite: true),
             Product(
+                id: 2,
                 imageName: "ProductMock2",
                 rating: 4.1,
                 testimonialsCount: 10,
@@ -76,6 +79,7 @@ extension Product {
                 badge: ProductBadge(type: .sparCard, color: .green),
                 saleAmount: nil),
             Product(
+                id: 3,
                 imageName: "ProductMock3",
                 rating: 4.1,
                 testimonialsCount: 10,
@@ -85,6 +89,7 @@ extension Product {
                 badge: ProductBadge(type: .new, color: .blue),
                 saleAmount: 25),
             Product(
+                id: 4,
                 imageName: "ProductMock4",
                 rating: 4.1,
                 testimonialsCount: 19,
@@ -94,6 +99,7 @@ extension Product {
                 badge: ProductBadge(type: .sale, color: .red),
                 saleAmount: nil),
             Product(
+                id: 5,
                 imageName: "ProductMock2",
                 rating: 4.1,
                 testimonialsCount: 19,
@@ -101,24 +107,6 @@ extension Product {
                 country: "Франция 🇫🇷",
                 price: ProductPrice(initial: 250.00, salePrice: 99.99),
                 badge: ProductBadge(type: .sparCard, color: .green),
-                saleAmount: nil),
-            Product(
-                imageName: "ProductMock3",
-                rating: 4.1,
-                testimonialsCount: 19,
-                name: "Салат Овощной с Крабовыми Палочками",
-                country: nil,
-                price: ProductPrice(initial: 1300.00, salePrice: 1290.00),
-                badge: ProductBadge(type: .new, color: .blue),
-                saleAmount: 25),
-            Product(
-                imageName: "ProductMock1",
-                rating: 4.1,
-                testimonialsCount: 19,
-                name: "сыр Ламбер 500/0 230г",
-                country: nil,
-                price: ProductPrice(initial: 199.99, salePrice: 99.99),
-                badge: nil,
                 saleAmount: nil)
         ]
     }
