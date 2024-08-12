@@ -11,7 +11,9 @@ import SwiftUI
 struct SparAssignmentApp: App {
     var body: some Scene {
         WindowGroup {
-            CategoryView()
+            NavigationStack {
+                MainView()
+            }
         }
     }
 }

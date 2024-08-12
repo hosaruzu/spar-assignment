@@ -11,24 +11,13 @@ struct Product: Identifiable {
     let id = UUID()
     let imageName: String
     let rating: Double
+    let testimonialsCount: Int
     let name: String
     let country: String?
     let price: ProductPrice
     let badge: ProductBadge?
     let saleAmount: Int?
     var isFavorite: Bool = false
-
-    func toggleFavorite() -> Product {
-        return Product(
-            imageName: self.imageName,
-            rating: self.rating,
-            name: self.name,
-            country: self.country,
-            price: self.price,
-            badge: self.badge,
-            saleAmount: self.saleAmount,
-            isFavorite: !self.isFavorite)
-    }
 }
 
 struct ProductBadge {
@@ -58,6 +47,7 @@ extension Product {
         Product(
             imageName: "ProductMock5",
             rating: 4.1,
+            testimonialsCount: 19,
             name: "Дорадо Охлажденная Непотрошеная 300-400г",
             country: "Франция 🇫🇷",
             price: ProductPrice(initial: 199.59, salePrice: 399.59),
@@ -69,6 +59,7 @@ extension Product {
             Product(
                 imageName: "ProductMock1",
                 rating: 4.1,
+                testimonialsCount: 19,
                 name: "сыр Ламбер 500/0 230г",
                 country: nil,
                 price: ProductPrice(initial: 199.99, salePrice: 99.99),
@@ -77,6 +68,7 @@ extension Product {
             Product(
                 imageName: "ProductMock2",
                 rating: 4.1,
+                testimonialsCount: 10,
                 name: "Дорадо Охлажденная Непотрошеная 300-400г",
                 country: "Франция",
                 price: ProductPrice(initial: 250.00, salePrice: 99.99),
@@ -85,7 +77,8 @@ extension Product {
             Product(
                 imageName: "ProductMock3",
                 rating: 4.1,
-                name: "Ролл Маленькая Япония 216г",
+                testimonialsCount: 10,
+                name: "Салат Овощной с Крабовыми Палочками",
                 country: nil,
                 price: ProductPrice(initial: 1300.00, salePrice: 1290.00),
                 badge: ProductBadge(type: .new, color: .blue),
@@ -93,10 +86,38 @@ extension Product {
             Product(
                 imageName: "ProductMock4",
                 rating: 4.1,
+                testimonialsCount: 19,
                 name: "Салат Овощной с Крабовыми Палочками",
                 country: nil,
                 price: ProductPrice(initial: 199.99, salePrice: 99.99),
                 badge: ProductBadge(type: .sale, color: .red),
+                saleAmount: nil),
+            Product(
+                imageName: "ProductMock2",
+                rating: 4.1,
+                testimonialsCount: 19,
+                name: "Дорадо Охлажденная Непотрошеная 300-400г",
+                country: "Франция",
+                price: ProductPrice(initial: 250.00, salePrice: 99.99),
+                badge: ProductBadge(type: .sparCard, color: .green),
+                saleAmount: nil),
+            Product(
+                imageName: "ProductMock3",
+                rating: 4.1,
+                testimonialsCount: 19,
+                name: "Салат Овощной с Крабовыми Палочками",
+                country: nil,
+                price: ProductPrice(initial: 1300.00, salePrice: 1290.00),
+                badge: ProductBadge(type: .new, color: .blue),
+                saleAmount: 25),
+            Product(
+                imageName: "ProductMock1",
+                rating: 4.1,
+                testimonialsCount: 19,
+                name: "сыр Ламбер 500/0 230г",
+                country: nil,
+                price: ProductPrice(initial: 199.99, salePrice: 99.99),
+                badge: nil,
                 saleAmount: nil)
         ]
     }
