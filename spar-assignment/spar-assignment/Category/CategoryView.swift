@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CategoryView: View {
     var body: some View {
-        Text("cate")
+        ProductCardView(product: Product.mockProduct())
     }
 }
 

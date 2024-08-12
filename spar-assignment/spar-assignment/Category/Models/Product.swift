@@ -14,15 +14,38 @@ struct Product: Identifiable {
     let name: String
     let country: String?
     let price: ProductPrice
-    let badge: ProductBadge
+    let badge: ProductBadge?
     let saleAmount: Int?
+    var isFavorite: Bool = false
+
+    func toggleFavorite() -> Product {
+        return Product(
+            imageName: self.imageName,
+            rating: self.rating,
+            name: self.name,
+            country: self.country,
+            price: self.price,
+            badge: self.badge,
+            saleAmount: self.saleAmount,
+            isFavorite: !self.isFavorite)
+    }
 }
 
-enum ProductBadge {
-    case none
-    case new
-    case sale
-    case sparCard
+struct ProductBadge {
+    let type: ProductBadgeType
+    let color: ProductBadgeColor
+}
+
+enum ProductBadgeType: String {
+    case new = "Новинки"
+    case sale = "Удар по ценам"
+    case sparCard = "Цена по карте"
+}
+
+enum ProductBadgeColor: String {
+    case blue = "BadgeBlue"
+    case green = "BadgeGreen"
+    case red = "BadgeRed"
 }
 
 struct ProductPrice {
@@ -31,17 +54,17 @@ struct ProductPrice {
 }
 
 extension Product {
-    func mockProduct() -> Product {
+    static func mockProduct() -> Product {
         Product(
-            imageName: "ProductMock1",
+            imageName: "ProductMock5",
             rating: 4.1,
-            name: "сыр Ламбер 500/0 230г",
-            country: nil,
-            price: ProductPrice(initial: 199.99, salePrice: 99.99),
-            badge: .none,
-            saleAmount: nil)
+            name: "Дорадо Охлажденная Непотрошеная 300-400г",
+            country: "Франция 🇫🇷",
+            price: ProductPrice(initial: 199.59, salePrice: 399.59),
+            badge: ProductBadge(type: .sparCard, color: .green),
+            saleAmount: 25)
     }
-    func mockProducts() -> [Product] {
+    static func mockProducts() -> [Product] {
         return [
             Product(
                 imageName: "ProductMock1",
@@ -49,7 +72,7 @@ extension Product {
                 name: "сыр Ламбер 500/0 230г",
                 country: nil,
                 price: ProductPrice(initial: 199.99, salePrice: 99.99),
-                badge: .none,
+                badge: nil,
                 saleAmount: nil),
             Product(
                 imageName: "ProductMock2",
@@ -57,7 +80,7 @@ extension Product {
                 name: "Дорадо Охлажденная Непотрошеная 300-400г",
                 country: "Франция",
                 price: ProductPrice(initial: 250.00, salePrice: 99.99),
-                badge: .new,
+                badge: ProductBadge(type: .sparCard, color: .green),
                 saleAmount: nil),
             Product(
                 imageName: "ProductMock3",
@@ -65,7 +88,7 @@ extension Product {
                 name: "Ролл Маленькая Япония 216г",
                 country: nil,
                 price: ProductPrice(initial: 1300.00, salePrice: 1290.00),
-                badge: .sale,
+                badge: ProductBadge(type: .new, color: .blue),
                 saleAmount: 25),
             Product(
                 imageName: "ProductMock4",
@@ -73,7 +96,7 @@ extension Product {
                 name: "Салат Овощной с Крабовыми Палочками",
                 country: nil,
                 price: ProductPrice(initial: 199.99, salePrice: 99.99),
-                badge: .sparCard,
+                badge: ProductBadge(type: .sale, color: .red),
                 saleAmount: nil)
         ]
     }
