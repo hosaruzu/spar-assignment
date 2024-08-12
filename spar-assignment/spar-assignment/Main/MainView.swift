@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-private enum ViewMode {
+private enum ViewType {
     case list
     case grid
 
@@ -20,14 +20,22 @@ private enum ViewMode {
 }
 
 struct MainView: View {
-    @State private var viewMode = ViewMode.grid
+    // MARK: - Properties
+
+    @StateObject var cartManager = CartManager()
+    @StateObject var viewModel = MainViewModel()
+    @State private var viewMode = ViewType.grid
+
+    // MARK: - Body
 
     var body: some View {
         Group {
             if viewMode == .grid {
-                ProductsGridView(products: Product.mockProducts())
+                ProductsGridView(products: viewModel.products)
+                    .environmentObject(cartManager)
             } else {
-                ProductsListView(products: Product.mockProducts())
+                ProductsListView(products: viewModel.products)
+                    .environmentObject(cartManager)
             }
         }
         .toolbar {
@@ -40,6 +48,8 @@ struct MainView: View {
         }
     }
 }
+
+// MARK: - Subviews
 
 private extension MainView {
     var viewModeButton: some View {
@@ -61,19 +71,28 @@ private extension MainView {
     }
 
     var cartViewButton: some View {
-        Button {
-            // add to cart action
-        } label: {
-            Image(.cartIcon)
-                .renderingMode(.template)
-                .foregroundStyle(.accent)
-                .background(
-                    RoundedRectangle(cornerRadius: 12)
-                        .foregroundStyle(.navigationButtonBackground)
-                        .frame(width: 40, height: 40)
-                )
-                .padding(.trailing, 16)
-                .padding(.bottom, 4)
+        NavigationLink(destination: CartView().environmentObject(cartManager)) {
+            ZStack {
+                Image(.cartIcon)
+                    .renderingMode(.template)
+                    .foregroundStyle(.accent)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .foregroundStyle(.navigationButtonBackground)
+                            .frame(width: 40, height: 40)
+                    )
+                    .overlay(
+                        Text("\(cartManager.products.count)")
+                            .font(.system(size: 12))
+                            .foregroundStyle(cartManager.products.isEmpty ? .clear : .white)
+                            .frame(width: 20, height: 20)
+                            .background(cartManager.products.isEmpty ? .clear : .badgeRed)
+                            .clipShape(Circle())
+                            .offset(x: 12, y: -10)
+                    )
+            }
+            .padding(.trailing, 16)
+            .padding(.bottom, 4)
         }
     }
 }
@@ -82,5 +101,6 @@ private extension MainView {
 #Preview {
     NavigationStack {
         MainView()
+            .environmentObject(CartManager())
     }
 }
